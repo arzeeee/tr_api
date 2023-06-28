@@ -1,0 +1,141 @@
+.ui.container
+  h1.ui.header.center.aligned
+    | Dashboard
+  .ui.grid
+    .ui.row
+      .eight.wide.column
+        .ui.centered.card
+          .content
+            .header
+              | User Summary (
+              = @current_user.username
+              | )
+          .content
+            h4.ui.sub.header
+              | Activities
+            .ui.small.feed
+              .event
+                .content
+                  .summary
+                    a
+                      | Debit              : 
+                    = @balances[:debit]
+              .event
+                .content
+                  .summary
+                    a
+                      | Credit             : 
+                    = @balances[:credit]
+              .event
+                .content
+                  .summary
+                    a
+                      | Current Balance    : 
+                    = @balances[:total]
+              .event
+                .content
+                  .summary
+                    a
+                    = link_to "Click here for list of users", users_path
+      .eight.wide.column    
+        .ui.centered.card
+          .content
+            .header
+              | Transactions Summary
+          .content
+            h4.ui.sub.header
+              | Activities
+            .ui.small.feed
+              .event
+                .content
+                  .summary
+                    a
+                      | Debit Transactions   : 
+                    = @current_user.debit_transactions.size
+              .event
+                .content
+                  .summary
+                    a
+                      | Credit Transactions  : 
+                    = @current_user.credit_transactions.size
+              .event
+                .content
+                  .summary
+                    a
+                      | Total Transactions   : 
+                    = @current_user.transactions.size
+              .event
+                .content
+                  .summary
+                    a
+                    = link_to "Click here for list of transactions", transactions_path
+      br
+    .ui.row
+      .column
+        .ui.fluid.card
+          .content
+            .header
+              | Create Deposit
+          .content
+            .ui.small.feed
+              .event
+                .content
+                  .summary
+                    = form_for @deposit, url: url_for(controller: 'api/transactions', action: 'deposit'), method: 'get', html: { class: "ui form" } do |f|
+                      .two.fields
+                        .field
+                          label
+                            | Amount
+                        .field
+                          input[type="text" name="amount" placeholder="Deposit Amount"]
+                      = f.submit "Create", name: "deposit", class: "ui blue button"
+                      
+    .ui.row
+      .column
+        .ui.fluid.card
+          .content
+            .header
+              | Create Withdrawal
+          .content
+            .ui.small.feed
+              .event
+                .content
+                  .summary
+                    = form_for @withdraw, url: url_for(controller: 'api/transactions', action: 'withdraw'), method: 'get', html: { class: "ui form" } do |f|
+                      .two.fields
+                        .field
+                          label
+                            | Amount
+                        .field
+                          input[type="text" name="amount" placeholder="Withdraw Amount"]
+                      = f.submit "Create", name: "withdraw", class: "ui blue button"
+    .ui.row
+    .ui.row
+      .column
+        .ui.fluid.card
+          .content
+            .header
+              | Transfer to Another User
+          .content
+            .ui.small.feed
+              .event
+                .content
+                  .summary
+                     = form_for @transfer, url: url_for(controller: 'api/transactions', action: 'transfer'), method: 'get', html: { class: "ui form" } do |f|
+                      .two.fields
+                        .field
+                          label
+                            | Username
+                        .field
+                          input[type="text" name="username" placeholder="Username"]
+                      .two.fields
+                        .field
+                          label
+                            | Amount
+                        .field
+                          input[type="text" name="amount" placeholder="Transfer Amount"]
+                      = f.submit "Create", name: "transfer", class: "ui blue button"
+    .ui.row
+    | <button class="ui button" onclick="window.location.href='
+    =logout_path
+    | '"> Logout 

@@ -1,0 +1,12 @@
+.ui.container
+  h1.ui.header.center.aligned
+    | Login
+  = form_for @user, url: url_for(controller: 'pages', action: 'sessions'), html: {class: "ui form"} do |f|
+    .field
+      = f.label :username, 'Username'
+      = f.text_field :username
+    .field
+      = f.label :password, 'Password'
+      = f.password_field :password
+    button.ui.button[type="submit"]
+      | Login

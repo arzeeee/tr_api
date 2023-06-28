@@ -1,0 +1,21 @@
+.ui.container
+  h1.ui.header.center.aligned
+    | User List
+  .ui.grid
+    table.ui.celled.table
+      thead
+        tr
+          th
+            | Username
+          th
+            | Balance
+      tbody
+        - @users.each do |user|
+          tr
+            td[data-label="Username"]
+              = user.username
+            td[data-label="Balance"]
+              = user.balance
+    | <button class="ui blue button" onclick="window.location.href='
+    =dashboard_path
+    | '"> Dashboard 

@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "fomantic-ui": "^2.9.2",
+    "fsevents": "^2.3.2",
+    "jquery": "^3.7.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

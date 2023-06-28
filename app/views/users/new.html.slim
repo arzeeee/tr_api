@@ -1,0 +1,12 @@
+.ui.container
+  h1.ui.header.center.aligned
+    | Register
+  = form_for @user, html: {class: "ui form"} do |f|
+    .field
+      = f.label :username, 'Username'
+      = f.text_field :username
+    .field
+      = f.label :password, 'Password'
+      = f.password_field :password
+    button.ui.button[type="submit"]
+      | Register

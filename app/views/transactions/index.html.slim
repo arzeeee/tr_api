@@ -1,0 +1,31 @@
+.ui.container
+  h1.ui.header.center.aligned
+    | Transaction List
+  .ui.grid
+    - @transactions.each do |t|
+      .ui.row
+        .eight.wide.column
+          .ui.centered.fluid.card
+            .content
+              .header
+                = t.transaction_type.capitalize
+            .content
+              h4.ui.sub.header
+                | Detail
+              .ui.small.feed
+                .event
+                  .content
+                    .summary
+                      a
+                        | Amount              : 
+                      = t.amount
+                .event
+                  .content
+                    .summary
+                      a
+                        | Transaction Date    : 
+                      = t.transaction_date
+    | <button class="ui blue button" onclick="window.location.href='
+    =dashboard_path
+    | '"> Dashboard 
+    
