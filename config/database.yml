@@ -82,4 +82,5 @@ test:
 production:
   <<: *default
   database: tr_api_production
-  host: localhost
+  host: postgres
+  port: 5432
